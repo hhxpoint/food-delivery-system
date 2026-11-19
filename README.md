@@ -79,3 +79,34 @@ python -m py_compile app.py database.py models.py services.py main.py
 ## License
 
 MIT License，详见 [LICENSE](LICENSE)。
+
+
+---
+
+## 数据模型与业务流程
+
+```text
+User (顾客/管理员)
+  └─ Restaurant 1─N Dish
+  └─ CartItem N─1 Dish
+  └─ Order 1─N OrderItem
+  └─ Review N─1 Restaurant/Dish
+```
+
+1. 顾客登录/注册 → 浏览餐厅与菜品 → 加入购物车
+2. 提交订单 → 生成订单明细与总价
+3. 管理员查看/更新订单状态
+4. 顾客确认收货并评价
+5. 管理后台查看统计
+
+## 常见问题
+
+- **启动报错 Tkinter 不存在**：Linux 安装 `python3-tk`；Windows 官方 Python 自带。
+- **数据库损坏**：删除 `food_delivery.db` 后重新启动，会自动建表并写入示例数据。
+- **中文乱码**：使用 Python 3.10+，文件按 UTF-8 保存。
+
+## 扩展计划
+
+- 接入真实支付/配送 API
+- 增加商家端与骑手端
+- 使用 FastAPI + React 重构为 Web 版
